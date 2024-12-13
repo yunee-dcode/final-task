@@ -15,7 +15,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 # 간결한 코드로 제목 표시
 st.write('### 1. 모든 친구들에게 나의 장점을 물어보세요. 친구가 알려 준 나의 장점 두 가지에 표시해 보세요.')
 
@@ -144,11 +143,18 @@ st.write(f"##### {st.session_state['table_title']}")
 
 st.write(data_with_total)
 
-  
 if st.button("표 저장하기"):
-    save_path = "mytable.xlsx"
-    data_with_total.to_excel(save_path, index=False)
-    st.success(f"표가 저장되었습니다: {save_path}")
+     buffer = BytesIO()
+    data_with_total.to_excel(buffer, index=False, engine='openpyxl')
+    buffer.seek(0)  # 버퍼의 시작 위치로 이동
+
+    # 사용자에게 다운로드 링크 제공
+    st.download_button(
+        label="엑셀 파일 다운로드",
+        data=buffer,
+        file_name="mytable.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
   
 st.write("")
 st.write("")
