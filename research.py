@@ -210,16 +210,3 @@ if st.button("그래프 완성"):
             for j, col in enumerate(columns):
                 key = f"cell_{i}_{j}"
                 data_extended.at[i, col] = st.session_state["cells"].get(key, " ")
-
-        # 메모리에 저장 후 다운로드 버튼 제공
-        buffer = BytesIO()
-        data_extended.to_excel(buffer, index=False, engine="openpyxl")
-        buffer.seek(0)
-
-        st.download_button(
-            label="확장된 데이터 다운로드",
-            data=buffer,
-            file_name="mytable_extended.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        )
-        st.success("그래프가 완성되었습니다! 다운로드 버튼을 클릭하세요.")
