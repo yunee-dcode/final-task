@@ -145,7 +145,7 @@ st.write(f"##### {st.session_state['table_title']}")
 st.write(data_with_total)
 
 if st.button("표 저장하기"):
-     buffer = BytesIO()
+    buffer = BytesIO()
     data_with_total.to_excel(buffer, index=False, engine='openpyxl')
     buffer.seek(0)  # 버퍼의 시작 위치로 이동
 
