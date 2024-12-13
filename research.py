@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from io import BytesIO
 
 st.sidebar.title("1. 친구의 장점 찾아주기")
 st.sidebar.title("2. 장점 표 확인하기")
