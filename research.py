@@ -170,7 +170,9 @@ st.write(
 )
 
 # 엑셀 파일 불러오기
-data = pd.read_excel("mytable.xlsx").iloc[:-1]
+uploaded_file = st.file_uploader("엑셀 파일 업로드", type=["xlsx"])
+if uploaded_file is not None:
+    data = pd.read_excel(uploaded_file).iloc[:-1]
 
 # 데이터프레임 처리
 max_count = int(data["횟수"].max())  # 횟수의 최댓값
@@ -203,6 +205,21 @@ render_interactive_table()
 
 # 확장된 데이터 저장
 if st.button("그래프 완성"):
-    save_path = "mytable_extended.xlsx"
-    data_extended.to_excel(save_path, index=False)
-    st.success(f"그래프가 완성되었습니다: {save_path}")
+        # 셀 상태를 데이터프레임에 반영
+        for i in range(len(data_extended)):
+            for j, col in enumerate(columns):
+                key = f"cell_{i}_{j}"
+                data_extended.at[i, col] = st.session_state["cells"].get(key, " ")
+
+        # 메모리에 저장 후 다운로드 버튼 제공
+        buffer = BytesIO()
+        data_extended.to_excel(buffer, index=False, engine="openpyxl")
+        buffer.seek(0)
+
+        st.download_button(
+            label="확장된 데이터 다운로드",
+            data=buffer,
+            file_name="mytable_extended.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        )
+        st.success("그래프가 완성되었습니다! 다운로드 버튼을 클릭하세요.")
