@@ -173,40 +173,45 @@ st.write(
 uploaded_file = st.file_uploader("엑셀 파일 업로드", type=["xlsx"])
 if uploaded_file is not None:
     data = pd.read_excel(uploaded_file).iloc[:-1]
-
+    
 # 데이터프레임 처리
-max_count = int(data["횟수"].max())  # 횟수의 최댓값
-columns = [str(i+1) for i in range(max_count)]  # 열 이름 생성
+    max_count = int(data["횟수"].max())  # 횟수의 최댓값
+    columns = [str(i+1) for i in range(max_count)]  # 열 이름 생성
 
 # 데이터프레임 확장
-data_extended = data.drop(columns=["횟수"], errors="ignore").copy()  # '횟수' 열 제거
-for col in columns:
-    data_extended[col] = " "  # 빈 열 추가
+    data_extended = data.drop(columns=["횟수"], errors="ignore").copy()  # '횟수' 열 제거
+    for col in columns:
+        data_extended[col] = " "  # 빈 열 추가
 
 # 표 시각적 효과를 위한 상태 관리
-if "cells" not in st.session_state:
-    st.session_state["cells"] = {
+    if "cells" not in st.session_state:
+        st.session_state["cells"] = {
         f"cell_{i}_{j}": " " for i in range(len(data_extended)) for j in range(len(columns))
-    }
+        }
 
-def render_interactive_table():
-    for i, row in data_extended.iterrows():
-        st.write(f"**{row['장점']}**")
-        cols = st.columns(len(columns))
-        for j, col in enumerate(columns):
-            key = f"cell_{i}_{j}"
-            cell_value = st.session_state["cells"].get(key, " ")
-            if cols[j].button(cell_value, key=key):
-                # 상태 업데이트
-                st.session_state["cells"][key] = "❤️" if cell_value == " " else " "
-
-# 확장된 데이터프레임 표시
-render_interactive_table()
-
-# 확장된 데이터 저장
-if st.button("그래프 완성"):
-        # 셀 상태를 데이터프레임에 반영
-        for i in range(len(data_extended)):
+    def render_interactive_table():
+        for i, row in data_extended.iterrows():
+            st.write(f"**{row['장점']}**")
+            cols = st.columns(len(columns))
             for j, col in enumerate(columns):
                 key = f"cell_{i}_{j}"
-                data_extended.at[i, col] = st.session_state["cells"].get(key, " ")
+                cell_value = st.session_state["cells"].get(key, " ")
+                if cols[j].button(cell_value, key=key):
+                # 상태 업데이트
+                    st.session_state["cells"][key] = "❤️" if cell_value == " " else " "
+
+# 확장된 데이터프레임 표시
+    render_interactive_table()
+
+# 확장된 데이터 저장
+    if st.button("그래프 완성"):
+            # 셀 상태를 데이터프레임에 반영
+            for i in range(len(data_extended)):
+                for j, col in enumerate(columns):
+                    key = f"cell_{i}_{j}"
+                    data_extended.at[i, col] = st.session_state["cells"].get(key, " ")
+                    
+    except Exception as e:
+        st.error(f"파일을 처리하는 중 오류가 발생했습니다: {e}")
+else:
+    st.info("엑셀 파일을 업로드하세요.")
