@@ -215,7 +215,6 @@ if uploaded_file is not None:
                     key = f"cell_{i}_{j}"
                     data_extended.at[i, col] = st.session_state["cells"].get(key, " ")
                     
-    except Exception as e:
-        st.error(f"파일을 처리하는 중 오류가 발생했습니다: {e}")
+
 else:
     st.info("엑셀 파일을 업로드하세요.")
