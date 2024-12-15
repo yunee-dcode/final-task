@@ -217,4 +217,4 @@ if uploaded_file is not None:
                     
 
 else:
-    st.info("엑셀 파일을 업로드하세요.")
+    st.info("위에서 저장한 표를 업로드 하기.")
