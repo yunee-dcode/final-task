@@ -190,6 +190,10 @@ if uploaded_file is not None:
         }
 
     def render_interactive_table():
+        if len(columns) == 0:
+            st.warning("표시할 열이 없습니다. 데이터가 제대로 준비되었는지 확인하세요.")
+            return
+        
         for i, row in data_extended.iterrows():
             st.write(f"**{row['장점']}**")
             cols = st.columns(len(columns))
