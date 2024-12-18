@@ -17,7 +17,7 @@ st.markdown('<p style="font-size: 20px;"> 1️⃣ 모든 친구들에게 나의 
 
 st.write('<div style="font-size:18px; color:#0000FF; font-weight:bold;">※잠깐! 나의 장점을 알려준 고마운 친구의 이름에 먼저 표시해 봅시다.</div>', unsafe_allow_html=True)
     # 이름 리스트
-    names = [
+names = [
         "1. 재운", "2. 재준", "3. 태은", "4. 난먙",
         "5. 선홍", "6. 은수", "7. 인성", "8. 준현",
         "9. 시온", "10. 우재", "11. 주연", "12. 이한",
