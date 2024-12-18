@@ -116,7 +116,6 @@ def create_button_row(row, index):
                 """,
                 unsafe_allow_html=True,
             )
-            st.experimental_rerun()
 
 # 각 행에 버튼 추가
 for index, row in st.session_state["data"].iterrows():
