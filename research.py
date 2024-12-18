@@ -237,3 +237,4 @@ user_input_2 = st.text_input(
     placeholder="입력하세요...",
     key="input_2"
 )
+st.markdown('<p style="font-size: 25px;font-weight:bold;"> 💡 왼쪽의 <상장 이름 만들어주는 챗봇>을 클릭하여 더 많은 아이디어를 얻어보세요.</p>', unsafe_allow_html=True)
