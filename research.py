@@ -159,7 +159,7 @@ with col2:
     st.markdown('<p style="font-size:20px;"> 🔔왼쪽 버튼을 눌러 표를 저장하세요.</p>', unsafe_allow_html=True)
 
 # 간결한 코드로 제목 표시
-st.markdown('<p style="font-size: 25px;font-weight:bold;"> 3️⃣ 위의 표를 참고하여 그래프를 완성해 봅시다. 빈칸을 누르면 ❤️가 나타납니다.</p>', unsafe_allow_html=True)
+st.markdown('<p style="font-size: 25px;font-weight:bold;"> 3️⃣ 저장한 표를 불러오세요. 빈칸을 눌러 ❤️를 채워 그래프를 완성해 보세요.</p>', unsafe_allow_html=True)
 st.markdown(
     '<div style="font-size:15px; font-weight:bold; color:#EB0000; text-align:right; padding:8px;">'
     '잘못 누른 경우 ❤️를 다시 한 번 누르세요. ❤️가 사라집니다. <br>아래의 "그래프 완성"버튼을 눌러야 그래프가 완성됩니다. '
@@ -167,17 +167,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-col1, col2 = st.columns([1, 1])
-
-with col1:
-    uploaded_file = st.file_uploader("엑셀 파일 업로드", type=["xlsx"])
-
-with col2:
-    st.markdown(
-        "<span class='file-uploader-note'>위에서 저장한 '표'를 불러오세요.</span>",
-        unsafe_allow_html=True
-    )
-
+# 엑셀 파일 불러오기
+uploaded_file = st.file_uploader("엑셀 파일 업로드", type=["xlsx"])
+st.markdown(
+    "<span class='file-uploader-note'>위에서 저장한 '표'를 불러오세요.</span>",
+    unsafe_allow_html=True
+)
 if uploaded_file is not None:
     data = pd.read_excel(uploaded_file).iloc[:-1]
     
