@@ -141,7 +141,7 @@ with col1:
         )
 
 with col2:
-    st.markdown("**왼쪽 버튼을 눌러 표를 저장하세요.**")
+    st.markdown('<p style="font-size:20px;font-weight:bold;"> 🔔왼쪽 버튼을 눌러 표를 저장하세요.</p>', unsafe_allow_html=True)
 
 # 간결한 코드로 제목 표시
 st.markdown('<p style="font-size: 25px;font-weight:bold;"> 3️⃣ 위의 표를 참고하여 그래프를 완성해 봅시다. 빈칸을 누르면 ❤️가 나타납니다.</p>', unsafe_allow_html=True)
