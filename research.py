@@ -103,10 +103,20 @@ def create_button_row(row, index):
 
     if cols[3].button("➕", key=f"btn_{index}"):
         st.session_state["data"].at[index, "횟수"] += 1
-
     if cols[4].button("➖", key=f"btn_minus_{index}"):
         if st.session_state["data"].at[index, "횟수"] > 0:
             st.session_state["data"].at[index, "횟수"] -= 1
+            count_placeholder.markdown(
+                f"""
+                <div style="font-size: 18px; font-weight: bold; text-align: center; 
+                    color: white; background-color: #FF5A5A; padding: 10px; 
+                    border-radius: 5px; display: inline-block; height: 40px; width: 40px;">
+                    {st.session_state['data'].at[index, '횟수']}
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            st.experimental_rerun()
 
 # 각 행에 버튼 추가
 for index, row in st.session_state["data"].iterrows():
