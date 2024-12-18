@@ -238,3 +238,8 @@ user_input_2 = st.text_input(
     key="input_2"
 )
 st.markdown('<p style="font-size: 25px;font-weight:bold;"> 💡 왼쪽의 <상장 이름 만들어주는 챗봇>을 클릭하여 더 많은 아이디어를 얻어보세요.</p>', unsafe_allow_html=True)
+
+st.write("")
+st.write("")
+st.markdown('<p style="font-size: 25px;font-weight:bold;"> 6️⃣ 학급 누리집에 내가 받고 싶은 상장의 제목을 입력해 봅시다.?</p>', unsafe_allow_html=True)
+st.markdown('[2-1 학급누리집으로 이동🔗](https://padlet.com/sungyoon2/2-1-jwprvb0pardawxhx, unsafe_allow_html=True)
