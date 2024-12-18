@@ -130,13 +130,14 @@ with col1:
         "표의 제목: 친구들이 생각하는 나의 ⬜️⬜️별 투표 ⬜️⬜️:",
         value=st.session_state.get("table_title", ""),
         key="title_input",
-        placeholder="빈 칸에 들어갈 말을 써 봅시다."
+        placeholder="빈 칸에 들어갈 말을 써 봅시다.",
+        on_change=clear_default_text
     )
    
 with col2:
     if st.button("정답 확인"):
         st.session_state["table_title"] = "친구들이 생각하는 나의 장점별 투표 횟수"
-        st.success("정답이 성공적으로 업데이트되었습니다!")
+        st.success("장점, 횟수")
 
 st.markdown(f"##### {st.session_state.get('table_title', '친구들이 생각하는 나의 장점별 투표 횟수')}")
 
