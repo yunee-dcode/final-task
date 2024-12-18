@@ -49,20 +49,8 @@ for i in range(0, len(names), cols_per_row * 8):
         for j in range(cols_per_row):
             name_idx = i + row_idx * cols_per_row + j
             if name_idx < len(names):
-                with row:
-                        st.markdown(
-                            f"""
-                            <div style="background-color: #f8f4e3; padding: 10px; border-radius: 5px;">
-                                <label>
-                                    <input type="checkbox" style="margin-right: 10px;">{names[name_idx]}
-                                </label>
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
-
-render_with_background()
-
+               row.checkbox(names[name_idx])
+                
 # 장점 데이터 생성
 data = pd.DataFrame({
     "번호": [1, 2, 3, 4, 5, 6, 7, 8],
