@@ -14,14 +14,8 @@ st.markdown(
 # 간결한 코드로 제목 표시
 st.markdown('<p style="font-size: 20px;"> 1️⃣ 모든 친구들에게 나의 장점을 물어보세요. 친구가 알려 준 나의 장점 두 가지에 표시해 보세요.</p>', unsafe_allow_html=True)
 
-# 열을 분리하고 사이에 빈 열 삽입
-col1, spacer, col2 = st.columns([1, 1, 1])  # 비율 조정: 0.5로 간격 조정
 
-#단 나누기
-col1, col2 = st.columns(2)
-
-with col2:
-    st.write('<div style="font-size:18px; color:#0000FF; font-weight:bold;">※잠깐! 나의 장점을 알려준 고마운 친구의 이름에 먼저 표시해 봅시다.</div>', unsafe_allow_html=True)
+st.write('<div style="font-size:18px; color:#0000FF; font-weight:bold;">※잠깐! 나의 장점을 알려준 고마운 친구의 이름에 먼저 표시해 봅시다.</div>', unsafe_allow_html=True)
     # 이름 리스트
     names = [
         "1. 재운", "2. 재준", "3. 태은", "4. 난먙",
@@ -29,7 +23,7 @@ with col2:
         "9. 시온", "10. 우재", "11. 주연", "12. 이한",
         "13. 애린", "14. 설하", "15. 성호", "16. 도연"
     ]
-    # 4x4 레이아웃
+    # 8*2 레이아웃
     cols_per_row = 4  # 한 줄에 4개
     for i in range(0, len(names), cols_per_row):
         cols = st.columns(cols_per_row)
