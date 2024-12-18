@@ -129,20 +129,17 @@ st.write(data_with_total)
 col1, col2 = st.columns([1, 3])
 
 with col1:
-    if st.button("표 저장하기"):
-        buffer = BytesIO()
-        data_with_total.to_excel(buffer, index=False, engine='openpyxl')
-        buffer.seek(0)  # 버퍼의 시작 위치로 이동
-        st.write("엑셀 파일이 저장되었습니다! 다운로드를 시작합니다.")
-        st.download_button(
-            label="엑셀 파일 다운로드",
-            data=buffer,
-            file_name="mytable.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            key="download_auto",
-            disabled=True
-        )
+    buffer = BytesIO()
+    data_with_total.to_excel(buffer, index=False, engine='openpyxl')
+    buffer.seek(0)  # 버퍼의 시작 위치로 이동
 
+    # 바로 다운로드
+    st.download_button(
+        label="표 저장하기",
+        data=buffer,
+        file_name="mytable.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
 with col2:
     st.markdown('<p style="font-size:20px;"> 🔔왼쪽 버튼을 눌러 표를 저장하세요.</p>', unsafe_allow_html=True)
 
