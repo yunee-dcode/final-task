@@ -13,6 +13,7 @@ st.markdown(
 
 # 간결한 코드로 제목 표시
 st.write('### 1. 모든 친구들에게 나의 장점을 물어보세요. 친구가 알려 준 나의 장점 두 가지에 표시해 보세요.')
+st.markdown('<p style="font-size: 12px;">This is a custom small text.</p>', unsafe_allow_html=True)
 
 # 열을 분리하고 사이에 빈 열 삽입
 col1, spacer, col2 = st.columns([1, 1, 1])  # 비율 조정: 0.5로 간격 조정
