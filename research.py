@@ -31,9 +31,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown('<p style="font-size: 20px;"> 1️⃣ 모든 친구들에게 나의 장점을 물어보세요. 친구가 알려 준 나의 장점 두 가지에 표시해 보세요.</p>', unsafe_allow_html=True)
+st.markdown('<p style="font-size: 20px;font-weight:bold;"> 1️⃣ 모든 친구들에게 나의 장점을 물어보세요. 친구가 알려 준 나의 장점 두 가지에 표시해 보세요.</p>', unsafe_allow_html=True)
 
-st.write('<div style="font-size:18px; color:#0000FF; font-weight:bold;">※잠깐! 나의 장점을 알려준 고마운 친구의 이름에 먼저 표시해 봅시다.</div>', unsafe_allow_html=True)
+st.write('<div style="font-size:18px; color:#0000FF;">※잠깐! 나의 장점을 알려준 고마운 친구의 이름에 먼저 표시해 봅시다.</div>', unsafe_allow_html=True)
 
 # 이름 리스트
 names = [
@@ -116,7 +116,7 @@ for index, row in st.session_state["data"].iterrows():
 
 st.write("")
 st.write("")
-st.markdown('<p style="font-size: 20px;"> 2️⃣ 친구들이 알려려 준 나의 장점을 표로 확인해 봅시다.</p>', unsafe_allow_html=True)
+st.markdown('<p style="font-size: 20px;font-weight:bold;"> 2️⃣ 친구들이 알려려 준 나의 장점을 표로 확인해 봅시다.</p>', unsafe_allow_html=True)
 title_input = st.text_input("표의 제목은 어떻게 지으면 좋을까요? 제목을 짓고 제출버튼을 눌러 표를 확인하세요.", value=st.session_state["table_title"])
 if st.button("제출"):
     st.session_state["table_title"] = title_input
@@ -142,7 +142,7 @@ st.write("")
 st.write("")
 
 # 간결한 코드로 제목 표시
-st.write("### 3️⃣ 위의 표를 참고하여 그래프를 완성해 봅시다. 빈칸을 누르면 ❤️가 나타납니다.")
+st.markdown('<p style="font-size: 20px;font-weight:bold;"> 3️⃣ 위의 표를 참고하여 그래프를 완성해 봅시다. 빈칸을 누르면 ❤️가 나타납니다.</p>', unsafe_allow_html=True)
 st.write(
     '<div style="font-size:15px; font-weight:bold; color:#EB0000; text-align:right; padding:8px;">'
     '잘못 누른 경우 하트를 다시 한 번 누르세요. 하트가 사라집니다. <br>아래의 "그래프 완성"버튼을 눌러야 그래프가 완성됩니다.'
