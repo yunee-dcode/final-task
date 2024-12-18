@@ -125,7 +125,7 @@ with col1:
             st.session_state["table_title"] = ""
             st.session_state["default_text_cleared"] = True
     title_input = st.text_input(
-        "표의 제목: 친구들이 생각하는 나의 ⬜️⬜️별 투표 ⬜️⬜️:",
+        "표의 제목: 친구들이 생각하는 나의 ⬜️⬜️별 투표 ⬜️⬜️",
         value=st.session_state.get("table_title", ""),
         key="title_input",
         placeholder="빈 칸에 들어갈 말을 써 봅시다.",
@@ -137,7 +137,12 @@ with col2:
         st.session_state["table_title"] = "친구들이 생각하는 나의 장점별 투표 횟수"
         st.success("장점, 횟수")
 
-st.markdown(f"##### {st.session_state.get('table_title', '친구들이 생각하는 나의 장점별 투표 횟수')}")
+# 정답 확인 전 기본 제목 표시
+if st.session_state.get("table_title", "") == "<표의 제목>":
+    st.markdown(f"##### {st.session_state['table_title']}")
+else:
+    st.markdown(f"##### 친구들이 생각하는 나의 장점별 투표 횟수")
+
 
 # 데이터프레임 표시
 st.dataframe(data_with_total)
