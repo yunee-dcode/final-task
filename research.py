@@ -117,13 +117,22 @@ for index, row in st.session_state["data"].iterrows():
 st.write("")
 st.write("")
 st.markdown('<p style="font-size: 25px;font-weight:bold;"> 2️⃣ 친구들이 알려려 준 나의 장점을 표로 확인해 봅시다.</p>', unsafe_allow_html=True)
-title_input = st.text_input("빈칸에 알맞은 말을 넣어 표의 제목을 지어봅시다. 제출 버튼을 눌러 정답을 확인해보세요.", value=st.session_state["table_title"])
-if st.button("제출"):
-    st.session_state["table_title"] = title_input
-    st.success("정답: 친구들이 생각하는 나의 장점별 투표 횟수")
-st.write(f"##### {st.session_state['table_title']}")
+col1, col2 = st.columns([3, 1])
+with col1:
+    title_input = st.text_input(
+        "표의 제목을 입력하세요:",
+        value=st.session_state.get("table_title", "친구들이 생각하는 나의 장점별 투표 횟수")
+    )
 
-st.write(data_with_total)
+with col2:
+    if st.button("정답 확인"):
+        st.session_state["table_title"] = "친구들이 생각하는 나의 장점별 투표 횟수"
+        st.success("정답이 성공적으로 업데이트되었습니다!")
+
+st.markdown(f"##### {st.session_state.get('table_title', '친구들이 생각하는 나의 장점별 투표 횟수')}")
+
+# 데이터프레임 표시
+st.dataframe(data_with_total)
 
 # 표 저장 버튼과 안내 텍스트
 col1, col2 = st.columns([1, 3])
