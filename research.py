@@ -120,7 +120,7 @@ st.markdown('<p style="font-size: 25px;font-weight:bold;"> 2️⃣ 친구들이 
 col1, col2 = st.columns([3, 1])
 with col1:
     title_input = st.text_input(
-        "표의 제목을 입력하세요:",
+        "표의 제목: 친구들이 생각하는 나의 ⬜️⬜️별 투표 ⬜️⬜️:",
         value=st.session_state.get("table_title", "친구들이 생각하는 나의 장점별 투표 횟수")
     )
 
