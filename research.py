@@ -125,21 +125,23 @@ st.write(f"##### {st.session_state['table_title']}")
 
 st.write(data_with_total)
 
-if st.button("표 저장하기"):
-    buffer = BytesIO()
-    data_with_total.to_excel(buffer, index=False, engine='openpyxl')
-    buffer.seek(0)  # 버퍼의 시작 위치로 이동
+# 표 저장 버튼과 안내 텍스트
+col1, col2 = st.columns([1, 3])
 
-    # 사용자에게 다운로드 링크 제공
-    st.download_button(
-        label="엑셀 파일 다운로드",
-        data=buffer,
-        file_name="mytable.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
-  
-st.write("")
-st.write("")
+with col1:
+    if st.button("표 저장하기"):
+        buffer = BytesIO()
+        data_with_total.to_excel(buffer, index=False, engine='openpyxl')
+        buffer.seek(0)  # 버퍼의 시작 위치로 이동
+        st.download_button(
+            label="엑셀 파일 다운로드",
+            data=buffer,
+            file_name="mytable.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+
+with col2:
+    st.markdown("**왼쪽 버튼을 눌러 표를 저장하세요.**")
 
 # 간결한 코드로 제목 표시
 st.markdown('<p style="font-size: 25px;font-weight:bold;"> 3️⃣ 위의 표를 참고하여 그래프를 완성해 봅시다. 빈칸을 누르면 ❤️가 나타납니다.</p>', unsafe_allow_html=True)
