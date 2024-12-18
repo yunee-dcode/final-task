@@ -2,14 +2,9 @@ import streamlit as st
 import pandas as pd
 from io import BytesIO
 
-st.sidebar.title("1. 친구의 장점 찾아주기")
-st.sidebar.title("2. 장점 표 확인하기")
-st.sidebar.title("3. 장점 그래프 완성하기")
-st.sidebar.write("친구들이 생각하는 나의 장점은 무엇인가요?")
-
 st.markdown(
     """
-    <div style="text-align: center;">
+    <div style="text-align: left;">
         <h1><span style="color: white; background-color: black;">우리 반 </span> <span style="color: yellow; background-color: black;">시상식</span> 🎓</h1>
     </div>
     """,
