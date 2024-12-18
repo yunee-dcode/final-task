@@ -126,7 +126,7 @@ with col1:
             st.session_state["default_text_cleared"] = True
     title_input = st.text_input(
         "표의 제목: 친구들이 생각하는 나의 ⬜️⬜️별 투표 ⬜️⬜️:",
-        value=st.session_state.get("table_title", "<표의 제목: >"),
+        value=st.session_state.get("table_title", ""),
         key="title_input",
         placeholder="빈 칸에 들어갈 말을 써 봅시다.",
         on_change=clear_default_text
