@@ -15,26 +15,32 @@ st.markdown(
 st.markdown('<p style="font-size: 20px;"> 1️⃣ 모든 친구들에게 나의 장점을 물어보세요. 친구가 알려 준 나의 장점 두 가지에 표시해 보세요.</p>', unsafe_allow_html=True)
 
 st.write('<div style="font-size:18px; color:#0000FF; font-weight:bold;">※잠깐! 나의 장점을 알려준 고마운 친구의 이름에 먼저 표시해 봅시다.</div>', unsafe_allow_html=True)
-    # 이름 리스트
+
+# 이름 리스트
 names = [
-        "1. 재운", "2. 재준", "3. 태은", "4. 난먙",
-        "5. 선홍", "6. 은수", "7. 인성", "8. 준현",
-        "9. 시온", "10. 우재", "11. 주연", "12. 이한",
-        "13. 애린", "14. 설하", "15. 성호", "16. 도연"
-    ]
-    # 8*2 레이아웃
-    cols_per_row = 4  # 한 줄에 4개
-    for i in range(0, len(names), cols_per_row):
-        cols = st.columns(cols_per_row)
-        for j, col in enumerate(cols):
-            if i + j < len(names):
-                col.checkbox(names[i + j])
-                
-    data = pd.DataFrame({
-        "번호": [1, 2, 3, 4, 5,6,7,8],
-        "장점": ["청소를 잘 해요", "책을 많이 읽어요", "친절해요", "잘 웃어줘요", "그림을 잘 그려요", "규칙을 잘 지켜요", "골고루 잘 먹어요", "양보를 잘 해요"],
-        "횟수": [0,0,0,0,0,0,0,0]
-    })
+    "1. 재운", "2. 재준", "3. 태은", "4. 난먙", "5. 선홍", "6. 은수", "7. 인성", "8. 준현",
+    "9. 시온", "10. 우재", "11. 주연", "12. 이한", "13. 애린", "14. 설하", "15. 성호", "16. 도연"
+]
+
+# 8*2 레이아웃
+cols_per_row = 2  # 한 줄에 2개
+for i in range(0, len(names), cols_per_row * 8):  # 8행씩 나누기
+    rows = st.columns(8)  # 8개의 열 생성
+    for row_idx, row in enumerate(rows):
+        for j in range(cols_per_row):
+            name_idx = i + row_idx * cols_per_row + j
+            if name_idx < len(names):
+                row.checkbox(names[name_idx])
+
+# 장점 데이터 생성
+data = pd.DataFrame({
+    "번호": [1, 2, 3, 4, 5, 6, 7, 8],
+    "장점": [
+        "청소를 잘 해요", "책을 많이 읽어요", "친절해요", "잘 웃어줘요",
+        "그림을 잘 그려요", "규칙을 잘 지켜요", "골고루 잘 먹어요", "양보를 잘 해요"
+    ],
+    "횟수": [0, 0, 0, 0, 0, 0, 0, 0]
+})
 
     # 세션 상태에 데이터 저장
     if "data" not in st.session_state:
