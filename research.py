@@ -158,7 +158,8 @@ with col1:
 with col2:
     st.markdown('<p style="font-size:20px;"> 🔔왼쪽 버튼을 눌러 표를 저장하세요.</p>', unsafe_allow_html=True)
 
-# 간결한 코드로 제목 표시
+st.write("")
+st.write("")
 st.markdown('<p style="font-size: 25px;font-weight:bold;"> 3️⃣ 저장한 표를 불러오세요. 빈칸을 눌러 ❤️를 채워 그래프를 완성해 보세요.</p>', unsafe_allow_html=True)
 st.markdown(
     '<div style="font-size:15px; font-weight:bold; color:#EB0000; text-align:right; padding:8px;">'
@@ -215,8 +216,14 @@ if uploaded_file is not None:
             for i in range(len(data_extended)):
                 for j, col in enumerate(columns):
                     key = f"cell_{i}_{j}"
-                    data_extended.at[i, col] = st.session_state["cells"].get(key, " ")
-                    
-
+                    data_extended.at[i, col] = st.session_state["cells"].get(key, " ")            
 else:
     st.info("입력된 자료가 없습니다.")
+
+st.write("")
+st.write("")
+st.markdown('<p style="font-size: 25px;font-weight:bold;"> 4️⃣ 친구들이 가장 많이 선택해 준 나의 장점은 무엇인가요?</p>', unsafe_allow_html=True)
+user_input = st.text_input(
+    "여기에 글자를 입력하세요:",  # 입력창 레이블
+    placeholder="입력하세요...",  # 힌트 텍스트
+)
