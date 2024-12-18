@@ -167,12 +167,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 엑셀 파일 불러오기
-uploaded_file = st.file_uploader("엑셀 파일 업로드", type=["xlsx"])
-st.markdown(
-    "<span class='file-uploader-note'>위에서 저장한 '표'를 불러오세요.</span>",
-    unsafe_allow_html=True
-)
+col1, col2 = st.columns([3, 1])
+
+with col1:
+    uploaded_file = st.file_uploader("엑셀 파일 업로드", type=["xlsx"])
+
+with col2:
+    st.markdown(
+        "<span class='file-uploader-note'>위에서 저장한 '표'를 불러오세요.</span>",
+        unsafe_allow_html=True
+    )
+
 if uploaded_file is not None:
     data = pd.read_excel(uploaded_file).iloc[:-1]
     
