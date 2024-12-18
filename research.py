@@ -219,4 +219,4 @@ if uploaded_file is not None:
                     
 
 else:
-    st.info("위에서 저장한 표를 업로드 하기.")
+    st.info("입력된 자료가 없습니다.")
