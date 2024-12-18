@@ -225,7 +225,8 @@ st.write("")
 st.markdown('<p style="font-size: 25px;font-weight:bold;"> 4️⃣ 친구들이 가장 많이 선택해 준 나의 장점은 무엇인가요?</p>', unsafe_allow_html=True)
 user_input_1 = st.text_input(
     "",
-    placeholder="입력하세요..."
+    placeholder="입력하세요...",
+    key="input_1"
 )
 
 st.write("")
@@ -233,5 +234,6 @@ st.write("")
 st.markdown('<p style="font-size: 25px;font-weight:bold;"> 5️⃣ 나의 장점으로 상장을 받는다면 어떤 이름을 지어줄 수 있을까요?</p>', unsafe_allow_html=True)
 user_input_2 = st.text_input(
     "",
-    placeholder="입력하세요..."
+    placeholder="입력하세요...",
+    key="input_2"
 )
