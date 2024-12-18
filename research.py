@@ -114,8 +114,7 @@ def create_button_row(row, index):
 for index, row in st.session_state["data"].iterrows():
     create_button_row(row, index)
 
-# 최종 데이터 출력
-st.write("### 2️⃣ 친구들이 알려려 준 나의 장점을 표로 확인해 봅시다.")
+st.markdown('<p style="font-size: 20px;"> 2️⃣ 친구들이 알려려 준 나의 장점을 표로 확인해 봅시다.</p>', unsafe_allow_html=True)
 title_input = st.text_input("표의 제목은 어떻게 지으면 좋을까요? 제목을 짓고 제출버튼을 눌러 표를 확인하세요.", value=st.session_state["table_title"])
 if st.button("제출"):
     st.session_state["table_title"] = title_input
