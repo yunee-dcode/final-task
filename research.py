@@ -25,7 +25,7 @@ st.markdown(
 st.markdown(
     """
     <div style="text-align: left;">
-        <h1><span style="color: white; background-color: black;">우리 반 </span> <span style="color: yellow; background-color: black;">시상식</span> 🎓</h1>
+        <h1>🎓<span style="color: white; background-color: black;">우리 반 </span> <span style="color: yellow; background-color: black;">시상식</span> 🎓</h1>
     </div>
     """,
     unsafe_allow_html=True
