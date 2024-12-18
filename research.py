@@ -133,11 +133,14 @@ with col1:
         buffer = BytesIO()
         data_with_total.to_excel(buffer, index=False, engine='openpyxl')
         buffer.seek(0)  # 버퍼의 시작 위치로 이동
+        st.write("엑셀 파일이 저장되었습니다! 다운로드를 시작합니다.")
         st.download_button(
             label="엑셀 파일 다운로드",
             data=buffer,
             file_name="mytable.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            key="download_auto",
+            disabled=True
         )
 
 with col2:
