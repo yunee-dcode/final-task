@@ -167,7 +167,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-col1, col2 = st.columns([3, 1])
+col1, col2 = st.columns([1, 1])
 
 with col1:
     uploaded_file = st.file_uploader("엑셀 파일 업로드", type=["xlsx"])
