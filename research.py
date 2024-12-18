@@ -162,7 +162,7 @@ with col2:
 st.markdown('<p style="font-size: 25px;font-weight:bold;"> 3️⃣ 위의 표를 참고하여 그래프를 완성해 봅시다. 빈칸을 누르면 ❤️가 나타납니다.</p>', unsafe_allow_html=True)
 st.markdown(
     '<div style="font-size:15px; font-weight:bold; color:#EB0000; text-align:right; padding:8px;">'
-    '잘못 누른 경우 ❤️를 다시 한 번 누르세요. ❤️가 사라집니다. <br>아래의 "그래프 완성"버튼을 눌러야 그래프가 완성됩니다. <br>위에서 저장한 \'표\'를 불러오세요.'
+    '위에서 저장한 \'표\'를 불러오세요. <br> 잘못 누른 경우 ❤️를 다시 한 번 누르세요. ❤️가 사라집니다. <br>아래의 "그래프 완성"버튼을 눌러야 그래프가 완성됩니다. '
     '</div>',
     unsafe_allow_html=True
 )
