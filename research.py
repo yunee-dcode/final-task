@@ -2,6 +2,26 @@ import streamlit as st
 import pandas as pd
 from io import BytesIO
 
+# 반응형 디자인을 위한 CSS 추가
+st.markdown(
+    """
+    <style>
+    @media (max-width: 768px) {
+        .block-container { padding: 1rem; }
+        h1 { font-size: 24px !important; }
+        p { font-size: 16px !important; }
+        .stButton button { font-size: 14px !important; }
+    }
+    @media (min-width: 769px) {
+        .block-container { padding: 2rem; }
+        h1 { font-size: 32px !important; }
+        p { font-size: 18px !important; }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.markdown(
     """
     <div style="text-align: left;">
@@ -11,7 +31,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 간결한 코드로 제목 표시
 st.markdown('<p style="font-size: 20px;"> 1️⃣ 모든 친구들에게 나의 장점을 물어보세요. 친구가 알려 준 나의 장점 두 가지에 표시해 보세요.</p>', unsafe_allow_html=True)
 
 st.write('<div style="font-size:18px; color:#0000FF; font-weight:bold;">※잠깐! 나의 장점을 알려준 고마운 친구의 이름에 먼저 표시해 봅시다.</div>', unsafe_allow_html=True)
@@ -23,9 +42,9 @@ names = [
 ]
 
 # 8*2 레이아웃
-cols_per_row = 2  # 한 줄에 2개
-for i in range(0, len(names), cols_per_row * 8):  # 8행씩 나누기
-    rows = st.columns(8)  # 8개의 열 생성
+cols_per_row = 2
+for i in range(0, len(names), cols_per_row * 8):
+    rows = st.columns(8)
     for row_idx, row in enumerate(rows):
         for j in range(cols_per_row):
             name_idx = i + row_idx * cols_per_row + j
@@ -42,90 +61,58 @@ data = pd.DataFrame({
     "횟수": [0, 0, 0, 0, 0, 0, 0, 0]
 })
 
-    # 세션 상태에 데이터 저장
+# 세션 상태 초기화
 if "data" not in st.session_state:
-        st.session_state["data"] = data
+    st.session_state["data"] = data
 
-    # 데이터프레임에 합계 추가
-    data_with_total = st.session_state["data"].copy()
-    # 합계 행을 DataFrame 형태로 생성
-    total_row = pd.DataFrame({
-        "번호": [None],
-        "장점": ["합계"],
-        "횟수": [data_with_total["횟수"].sum()]
-    })
-    data_with_total = pd.concat([data_with_total, total_row], ignore_index=True)
+# 데이터프레임에 합계 추가
+data_with_total = st.session_state["data"].copy()
+total_row = pd.DataFrame({
+    "번호": [None],
+    "장점": ["합계"],
+    "횟수": [data_with_total["횟수"].sum()]
+})
+data_with_total = pd.concat([data_with_total, total_row], ignore_index=True)
 
-    # 제목 설정
-    if "table_title" not in st.session_state:
-        st.session_state["table_title"] = "친구들이 생각하는 나의 (  )별 투표 (  )"
+# 표 제목 상태 초기화
+if "table_title" not in st.session_state:
+    st.session_state["table_title"] = "친구들이 생각하는 나의 (  )별 투표 (  )"
 
-    st.write(
-        '<div style="font-size:15px; color:#333; text-align:right; padding:10px;">'
-        '친구가 알려준 나의 장점 ➕ 누르기 <br> 잘못 입력한 경우 ➖ 누르기'
-        '</div>',
-        unsafe_allow_html=True
+st.write(
+    '<div style="font-size:15px; color:#333; text-align:right; padding:10px;">'
+    '친구가 알려준 나의 장점 ➕ 누르기 <br> 잘못 입력한 경우 ➖ 누르기'
+    '</div>',
+    unsafe_allow_html=True
+)
+
+def create_button_row(row, index):
+    cols = st.columns([0.5, 3, 1, 1, 1])
+    cols[0].write(f"<div style='font-size:18px; text-align:center;'>{row['번호']}</div>", unsafe_allow_html=True)
+    cols[1].write(f"<div style='font-size:18px;'>{row['장점']}</div>", unsafe_allow_html=True)
+
+    # 횟수를 즉각 반영
+    count_placeholder = cols[2].empty()
+    count_placeholder.markdown(
+        f"""
+        <div style="font-size: 18px; font-weight: bold; text-align: center; 
+            color: white; background-color: #A0A0FF; padding: 10px; 
+            border-radius: 5px; display: inline-block; height: 40px; width: 40px;">
+            {row['횟수']}
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
-    def create_button_row(row, index):
-        cols = st.columns([0.5, 3, 1, 1, 1])
-        cols[0].write(f"<div style='font-size:18px; text-align:center;'>{row['번호']}</div>", unsafe_allow_html=True)
-        cols[1].write(f"<div style='font-size:18px;'>{row['장점']}</div>", unsafe_allow_html=True)
-        
-        #cols[0].write(row["번호"])
-        #cols[1].write(row["장점"])
 
-        # 횟수를 즉각 반영
-        count_placeholder = cols[2].empty()
-        count_placeholder.markdown(
-            f"""
-            <div style="font-size: 18px;  font-weight: bold; text-align: center; 
-                color: white; background-color: #A0A0FF; padding: 10px; 
-                border-radius: 5px;  display: inline-block; height: 40px; width: 40px;">
-                {row["횟수"]}
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+    if cols[3].button("➕", key=f"btn_{index}"):
+        st.session_state["data"].at[index, "횟수"] += 1
 
-        if cols[3].button("➕", key=f"btn_{index}"):
-            st.session_state["data"].at[index, "횟수"] += 1
-            # 업데이트된 횟수 즉시 반영
-            count_placeholder.markdown(
-                f"""
-                <div style="
-                    font-size: 20px; font-weight: bold; 
-                    text-align: center;  color: yellow;  background-color: #5A5AFF; 
-                    padding: 10px;   border-radius: 5px; 
-                    display: inline-block;  height: 40px;   width: 40px;">
-                    {st.session_state["data"].at[index, "횟수"]}
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+    if cols[4].button("➖", key=f"btn_minus_{index}"):
+        if st.session_state["data"].at[index, "횟수"] > 0:
+            st.session_state["data"].at[index, "횟수"] -= 1
 
-        if cols[4].button("➖", key=f"btn_minus_{index}"):
-            if st.session_state["data"].at[index, "횟수"] > 0:  # 0 이하로 내려가지 않도록 제한
-                st.session_state["data"].at[index, "횟수"] -= 1
-                # 업데이트된 횟수 즉시 반영
-                count_placeholder.markdown(
-                    f"""
-                    <div style="
-                        font-size: 20px; font-weight: bold; 
-                        text-align: center;  color: yellow;   background-color: #FF5A5A; 
-                        padding: 10px;   border-radius: 5px; 
-                        display: inline-block;  height: 40px;  width: 40px;">
-                        {st.session_state["data"].at[index, "횟수"]}
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )     
-    # 각 행에 버튼 추가
-    for index, row in st.session_state["data"].iterrows():
-        create_button_row(row, index)
-
-st.write("")
-st.write("")
-st.write("")
+# 각 행에 버튼 추가
+for index, row in st.session_state["data"].iterrows():
+    create_button_row(row, index)
 
 # 최종 데이터 출력
 st.write("### 2. 친구들이 알려려 준 나의 장점을 표로 확인해 봅시다.")
