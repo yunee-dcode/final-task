@@ -74,9 +74,7 @@ total_row = pd.DataFrame({
 })
 data_with_total = pd.concat([data_with_total, total_row], ignore_index=True)
 
-# 표 제목 상태 초기화
-if "table_title" not in st.session_state:
-    st.session_state["table_title"] = "빈 칸에 들어갈 말을 써주세요."
+
 
 st.write(
     '<div style="font-size:15px; color:#333; text-align:right; padding:10px;">'
