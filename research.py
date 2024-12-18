@@ -33,7 +33,7 @@ st.markdown(
 
 st.markdown('<p style="font-size: 25px;font-weight:bold;"> 1️⃣ 모든 친구들에게 나의 장점을 물어보세요. 친구가 알려 준 나의 장점 두 가지에 표시해 보세요.</p>', unsafe_allow_html=True)
 
-st.write('<div style="font-size:18px; color:#0000FF;">※잠깐! 나의 장점을 알려준 고마운 친구의 이름에 먼저 표시해 봅시다.</div>', unsafe_allow_html=True)
+st.write('<div style="font-size:18px; color:#0000FF;">📌잠깐! 빠뜨린 친구는 없는지 친구의 이름에 표시해 보세요.</div>', unsafe_allow_html=True)
 
 # 이름 리스트
 names = [
