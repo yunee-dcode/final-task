@@ -43,7 +43,7 @@ data = pd.DataFrame({
 })
 
     # 세션 상태에 데이터 저장
-    if "data" not in st.session_state:
+if "data" not in st.session_state:
         st.session_state["data"] = data
 
     # 데이터프레임에 합계 추가
