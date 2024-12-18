@@ -241,5 +241,5 @@ st.markdown('<p style="font-size: 25px;font-weight:bold;"> 💡 왼쪽의 <상�
 
 st.write("")
 st.write("")
-st.markdown('<p style="font-size: 25px;font-weight:bold;"> 6️⃣ 학급 누리집에 내가 받고 싶은 상장의 제목을 입력해 봅시다.?</p>', unsafe_allow_html=True)
+st.markdown('<p style="font-size: 25px;font-weight:bold;"> 6️⃣ 학급 누리집에 내가 받고 싶은 상장의 제목을 입력해 봅시다.</p>', unsafe_allow_html=True)
 st.markdown('[2-1 학급누리집으로 이동🔗](https://padlet.com/sungyoon2/2-1-jwprvb0pardawxhx)', unsafe_allow_html=True)
